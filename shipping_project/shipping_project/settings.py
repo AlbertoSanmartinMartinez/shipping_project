@@ -25,7 +25,13 @@ SECRET_KEY = 'z&+v=%4_%0$ak+g&kzm3s=7!u4!nqicr2-^zs8#5q7+qm=bz!='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*'
+]
+
+FIXTURE_DIRS = [
+    os.path.join(BASE_DIR, "fixtures"),
+]
 
 
 # Application definition
@@ -37,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'shipping_app',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'global_login_required.GlobalLoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'shipping_project.urls'
@@ -54,7 +63,9 @@ ROOT_URLCONF = 'shipping_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, "templates"),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -103,9 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ES'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Madrid'
 
 USE_I18N = True
 
@@ -113,8 +124,36 @@ USE_L10N = True
 
 USE_TZ = True
 
+# ********** SESSION CONFIG **********
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
+LOGIN_URL = 'panel:custom_login'
+LOGOUT_REDIRECT_URL = 'panel:home'
+
+# ********** STATIC FILES **********
+
+# DEVELOPMENT
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+STATICFILES_FINDERS = [
+       "django.contrib.staticfiles.finders.FileSystemFinder",
+       "django.contrib.staticfiles.finders.AppDirectoriesFinder"
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+# ********** MEDIA FILES **********
+
+# DEVELOPMENT
+
+MEDIA_URL = '/media/'
+
+MEDIAFILES_DIRS = [
+    os.path.join(BASE_DIR, "media"),
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
