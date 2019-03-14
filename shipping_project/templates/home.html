@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div">
+        <img class="img-fluid" src="{% static 'img/salamanca_banner.jpg' %}" alt="">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <h2 class="text-center">Zonas</h2>
+				<p class="text-center">Descripción zonas.</p>
+				<p class="text-center"><a class="btn btn-default" target="_blank" href="https://cg3innova.es/">Ver detalles &raquo;</a></p>
+			</div>
+			<div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+				<h2 class="text-center">Transportistas</h2>
+				<p class="text-center">Descripción transportistas</p>
+        <p class="text-center"><a class="btn btn-default" target="_blank" href="https://cg3innova.es/">Ver detalles &raquo;</a></p>
+			</div>
+			<div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+				<h2 class="text-center">Métodos Envío</h2>
+				<p class="text-center">Descripción métodos de envío.</p>
+				<p class="text-center"><a class="btn btn-default" target="_blank" href="https://cg3innova.es/">Ver detalles &raquo;</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+<hr>
+
+{% endblock content %}
