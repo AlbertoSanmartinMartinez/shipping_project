@@ -6,6 +6,9 @@
 # python3 manage.py migrate
 #
 # access for the panel manager:
-#
 # username:gestor
 # password: Abcd.1234
+#
+# Alberto Sanmartín Martínez
+# Juan Bone Valls
+# Jordi Boronat Garcia
