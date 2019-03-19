@@ -1,21 +1,30 @@
-"""shipping_project URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
+
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf.urls.static import static
+
+from shipping_app import urls as panel_urls
+from shipping_app import views as shipping_views
+
+from shipping_project import settings
+
 
 urlpatterns = [
+
+    # admin urls
     path('admin/', admin.site.urls),
+
+    # panel urls
+    path('panel/', include((panel_urls, 'panel'), namespace='panel')),
+
+    # web urls
+    path('checkout/', shipping_views.checkout, name='checkout'),
+    path('checkout/cargar_elementos/', shipping_views.checkout_load, name='checkout_ajax_load'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
