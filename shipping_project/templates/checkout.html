@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h3>Checkout</h3>
+
+        <form method="POST" action="{% url 'checkout' %}">
+          {% csrf_token %}
+          {% include 'form.html' %}
+          <br>
+          <button type="submit" class="btn btn-outline-primary">Consultar</button>
+        </form>
+      </div>
+      <div class="col">
+        <h3>Selecionar Envío</h3>
+
+        <div class="form-check">
+        {% for method in methods %}
+
+        <label class="form-check-label">
+          <input type="radio" id="radio{{ forloop.counter}}" class="form-check-input" name="optradio">{{ method.name}} | {{ method.price }} € | {{ method.duration }} h | {{ method.shipper }}
+        </label>
+
+        {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Pagar</button>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+{% endblock content %}
